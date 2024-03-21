@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{'/your-endpoint'}">
+    <button>Перейти</button>
+</a>
+<span>Ответ: [[${response}]]</span>
+</body>
+</html>

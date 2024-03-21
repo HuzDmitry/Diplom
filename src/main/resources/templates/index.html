@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню Пользователя</title>
+</head>
+<body>
+<div th:insert="~{fragment::header}"></div>
+<h1>Регистрация</h1>
+<form th:action="@{/user/register}"  method="post">
+    <label>Фамилия пользователя:</label>
+    <input type="text" th:name="firstName" required><br>
+    <label>Имя пользователя:</label>
+    <input type="text" th:name="lastName" required><br>
+    <label>Должность пользователя:</label>
+    <input type="text" th:name="position" required><br>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<h1>Вход</h1>
+<form th:action="@{/user/login}" method="get">
+    <label for="loginUsername">Имя пользователя:</label>
+    <input type="text" id="loginUsername" name="id" required><br>
+    <button type="submit">Войти</button>
+</form>
+</body>
+</html>

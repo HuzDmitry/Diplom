@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню Администратора.</title>
+</head>
+<body>
+<div th:insert="~{fragment::header}"></div>
+ <h1>Меню Администратора.</h1>
+  <ul>
+    <li><a href="/ticket">Работа с билетами</a></li>
+    <li><a href="/user">Работа с пользователями</a></li>
+    <li><a href="/event-log">Работа с журналом событий</a></li>
+    <li><a href="/">Выход</a></li>
+  </ul>
+</body>
+</html>
