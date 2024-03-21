@@ -1,6 +1,8 @@
 package by.TestFireAlarm.service;
 
 
+import by.TestFireAlarm.dao.LogAndFirstName;
+import by.TestFireAlarm.dao.Status;
 import by.TestFireAlarm.entity.LogsTest;
 import by.TestFireAlarm.entity.Users;
 
@@ -10,11 +12,11 @@ public interface LogsTestService {
 
     LogsTest fidById(Integer id);
 
-    List<LogsTest> findAll();
+    List<LogAndFirstName> findAll();
 
     List<LogsTest>findByUser(Users users);
 
-    List<LogsTest>findByStatus(byte status);
+    List<LogsTest>findByStatus(Status status);
 
     void deleteLogById(Integer id);
 

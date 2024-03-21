@@ -1,5 +1,7 @@
 package by.TestFireAlarm.service;
 
+import by.TestFireAlarm.dao.LogAndFirstName;
+import by.TestFireAlarm.dao.Status;
 import by.TestFireAlarm.entity.LogsTest;
 import by.TestFireAlarm.entity.Users;
 import by.TestFireAlarm.repository.LogsTestRepository;
@@ -26,8 +28,8 @@ public class LogsTestServiceImpl implements LogsTestService{
     }
 
     @Override
-    public List<LogsTest> findAll() {
-        return logsTestRepository.findAll();
+    public List<LogAndFirstName> findAll() {
+        return logsTestRepository.findAllByLogsAndUsers();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class LogsTestServiceImpl implements LogsTestService{
     }
 
     @Override
-    public List<LogsTest> findByStatus(byte status) {
+    public List<LogsTest> findByStatus(Status status) {
         return logsTestRepository.findByStatus(status);
     }
 

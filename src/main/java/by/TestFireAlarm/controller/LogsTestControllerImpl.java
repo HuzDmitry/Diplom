@@ -1,5 +1,7 @@
 package by.TestFireAlarm.controller;
 
+import by.TestFireAlarm.dao.LogAndFirstName;
+import by.TestFireAlarm.dao.Status;
 import by.TestFireAlarm.entity.LogsTest;
 import by.TestFireAlarm.entity.Users;
 import by.TestFireAlarm.service.LogsTestService;
@@ -19,8 +21,8 @@ public class LogsTestControllerImpl implements LogsTestController{
     }
 
     @Override
-    public String findAll(Model model) {
-        List<LogsTest> l = logsTestService.findAll();
+    public String findAllLogs(Model model) {
+        List<LogAndFirstName> l = logsTestService.findAll();
         model.addAttribute("logs", l);
         return "event.html";
     }
@@ -33,7 +35,7 @@ public class LogsTestControllerImpl implements LogsTestController{
     }
 
     @Override
-    public String findByStatus(byte status, Model model) {
+    public String findByStatus(Status status, Model model) {
         List<LogsTest> l = logsTestService.findByStatus(status);
         model.addAttribute("logs", l);
         return "event.html";

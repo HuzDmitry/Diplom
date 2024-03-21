@@ -1,5 +1,6 @@
 package by.TestFireAlarm.controller;
 
+import by.TestFireAlarm.dao.Status;
 import by.TestFireAlarm.entity.LogsTest;
 import by.TestFireAlarm.entity.Users;
 import org.springframework.ui.Model;
@@ -9,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 public interface LogsTestController {
 
     @GetMapping
-    String findAll(Model model);
+    String findAllLogs(Model model);
 
     @GetMapping("/id")
     String findById(@RequestParam Integer id, Model model);
 
     @GetMapping("/status")
-    String findByStatus(@RequestParam byte status, Model model);
+    String findByStatus(@RequestParam Status status, Model model);
 
     @GetMapping("/userid")
     String findByUser(@ModelAttribute Users users, Model model);

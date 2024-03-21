@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Прохождение теста</title>
+</head>
+<body>
+<h1>Тест</h1>
+<form  th:if="${ticket}">
+    <p><strong>Номер билета:</strong> <span th:text="${ticket.id}"></span></p>
+    <p><strong>Вопрос:</strong> <span th:text="${ticket.question}"></span></p>
+    <p><strong>Ответ 1:</strong> <span th:text="${ticket.answer1}"></span></p>
+    <p><strong>Ответ 2:</strong> <span th:text="${ticket.answer2}"></span></p>
+    <p><strong>Ответ 3:</strong> <span th:text="${ticket.answer3}"></span></p>
+    <p><strong>Ответ 4:</strong> <span th:text="${ticket.answer4}"></span></p>
+</form>
+<form th:action="@{/ticket/test}" method="get">
+    <input type="hidden" min="1" max="4"  th:name="number" th:value="${number}" required><br>
+    <input type="hidden"  th:name="next" th:value="false" required><br>
+    <button type="submit">назад</button>
+</form>
+
+<form th:action="@{/ticket/test}" method="get">
+    <label for="test">Номер ответа:</label>
+    <input type="number" min="1" max="4" id="test" th:name="number" th:value="${number}" required><br>
+    <input type="hidden"  th:name="next" th:value="true" required><br>
+    <button type="submit">Вперед</button>
+</form>
+<form th:action="@{/ticket/end}" method="get">
+    <!--<input type="hidden"  th:name="next" th:value="false" required><br>-->
+    <button type="submit">Закончить тест</button>
+</form>
+
+</body>
+</html>

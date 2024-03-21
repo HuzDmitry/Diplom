@@ -2,13 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Меню с билетами</title>
+    <title>Журнал событий</title>
 </head>
 <body>
-<h1>Просмотр билета</h1>
-
-
-
-
+<h1>Просмотр журнала событий</h1>
+<div th:insert="~{fragment::header}"></div>
+<table border="3">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>фамилия</th>
+        <th>имя</th>
+        <th>статус</th>
+        <th>№ билетов</th>
+        <th>ответы</th>
+        <th>время начала</th>
+        <th>время окончание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="field : ${logs}">
+        <td th:text="${field.id}">Field Name</td>
+        <td th:text="${field.first_name}">Field Value</td>
+        <td th:text="${field.last_name}">Field Value</td>
+        <td th:text="${field.status}">Field Value</td>
+        <td th:text="${field.tickets}">Field Value</td>
+        <td th:text="${field.answers}">Field Value</td>
+        <td th:text="${field.start}">Field Value</td>
+        <td th:text="${field.end}">Field Value</td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/event-log/delete}" method="post">
+    <label for="log">ID записи:</label>
+    <input type="number" min="1" id="log" th:name="id" required>
+    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить эту запись?')">Удалить запись</button>
+</form>
+<form action="/admin" metod="get">
+    <button type="submit">Выход в главное меню</button>
+</form>
 </body>
 </html>

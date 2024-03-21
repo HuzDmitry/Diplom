@@ -2,12 +2,25 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Меню пользователя</title>
 </head>
 <body>
-<a th:href="@{'/your-endpoint'}">
-    <button>Перейти</button>
-</a>
-<span>Ответ: [[${response}]]</span>
+<div th:insert="~{fragment::header}"></div>
+<h1>Меню прохождения теста</h1>
+<form  th:if="${users}">
+    <h2>Данные пользователя</h2>
+    <p><strong>ID пользователя:</strong> <span th:text="${users.id}"></span></p>
+    <p><strong>Фамилия:</strong> <span th:text="${users.firstName}"></span></p>
+    <p><strong>Имя:</strong> <span th:text="${users.lastName}"></span></p>
+    <p><strong>Должность:</strong> <span th:text="${users.position}"></span></p>
+    <p><strong>Дата регистрации:</strong> <span th:text="${users.registration}"></span></p>
+</form>
+<h4>Тест состоит из 10 вопросов. результат теста узнаете после решения всех вопросов.</h4>
+
+<a th:href="@{'/ticket/test'}">
+    <button>Начать тест</button></a>
+<a th:href="@{'/user'}">
+    <button>выход</button></a>
+
 </body>
 </html>

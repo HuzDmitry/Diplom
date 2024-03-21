@@ -26,14 +26,14 @@ public class LogsTest {
     private Timestamp testEnd;
 
     @Column(name="status")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "tickets")
-    private String ListTickets;
+    private String tickets;
 
     @Column(name = "answers")
-    private String ListAnswers;
+    private String answers;
 
     public Integer getId() {
         return id;
@@ -75,19 +75,19 @@ public class LogsTest {
         this.status = status;
     }
 
-    public String getListTickets() {
-        return ListTickets;
+    public String getTickets() {
+        return tickets;
     }
 
-    public void setListTickets(String listTickets) {
-        ListTickets = listTickets;
+    public void setTickets(String tickets) { tickets = tickets;
     }
 
-    public String getListAnswers() {
-        return ListAnswers;
+    public String getAnswers() {
+        return answers;
     }
 
-    public void setListAnswers(String listAnswers) {
-        ListAnswers = listAnswers;
+    public void setAnswers(String answers) {
+        answers = answers;
     }
+
 }

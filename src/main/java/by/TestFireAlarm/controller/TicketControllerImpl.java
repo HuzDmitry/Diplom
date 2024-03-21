@@ -23,24 +23,24 @@ public class TicketControllerImpl implements TicketController{
     public String getMainTicket(Model model) {
         model.addAttribute("ticket", new Ticket());
         List<TicketIdQuestion>tickets =  ticketService.findAll();
-        model.addAttribute("tickets", tickets);
-        return "tickets.html";
+        model.addAttribute("tic", tickets);
+        return "ticketslist.html";
     }
-
+    @Override
     public String getTicketById(Integer id, Model model){
         Ticket t = ticketService.findById(id);
         model.addAttribute("ticket", t);
         List<TicketIdQuestion>tickets =  ticketService.findAll();
-        model.addAttribute("tickets", tickets);
-        return "tickets.html";
+        model.addAttribute("tic", tickets);
+        return "ticketslist.html";
     }
-
+    @Override
     public String findAll(Model model){
         List<TicketIdQuestion>tickets =  ticketService.findAll();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("tic", tickets);
         return "redirect:/ticket";
     }
-
+    @Override
     public String saveTicket( Ticket ticket, Model model){
         ticketService.save(ticket);
         return "redirect:/ticket";
@@ -51,9 +51,20 @@ public class TicketControllerImpl implements TicketController{
         ticketService.deleteTicketById(id);
         return "redirect:/ticket";
     }
-
+    @Override
     public String updateTicket(Ticket ticket, Model model){
         ticketService.updateTicket(ticket);
         return "redirect:/ticket";
+    }
+
+    @Override
+    public String getTicketByTest(Integer number, boolean next, Model model) {
+        System.out.println(number+ "boolean: "+next);
+        return "test.html";
+    }
+
+    @Override
+    public String endTest(Model model) {
+        return "endTest.html";
     }
 }

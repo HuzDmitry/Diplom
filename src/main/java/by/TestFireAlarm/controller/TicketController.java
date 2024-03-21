@@ -23,4 +23,10 @@ public interface TicketController {
 
     @GetMapping("/del")
     String deleteTicket(@RequestParam Integer id, Model model);
+
+    @GetMapping("/test")
+    String getTicketByTest(@RequestParam(defaultValue = "1") Integer number, boolean next, Model model);
+
+    @GetMapping("/end")
+    String endTest(Model model);
 }

@@ -2,17 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Редактор билетов</title>
 </head>
 <body>
 <div th:insert="~{fragment :: header}"></div>
+<form action="/admin" metod="get">
+    <button type="submit">Выход в главное меню</button>
+</form>
 <h1>Форма для работы с билетами</h1>
 
 <!-- Форма для создания и редактирования билета -->
 <form th:action="@{/ticket/save}" th:object="${ticket}" method="post">
     <h2>Создание и изменение билета</h2>
     <label for="id">Номер билета:</label>
-    <input type="number" id="id" th:field="*{id}" required><br>
+    <input type="number" min="1" id="id" th:field="*{id}" required><br>
     <label for="question">Вопрос:</label>
     <input type="text" id="question" th:field="*{question}" required><br>
     <label for="answer1">Ответ 1:</label>
@@ -24,7 +27,7 @@
     <label for="answer4">Ответ 4:</label>
     <input type="text" id="answer4" th:field="*{answer4}" required><br>
     <label for="answerOrigin">Правильный Ответ :</label>
-    <input type="number" id="answerOrigin" th:field="*{answerOrigin}" required><br>
+    <input type="number" min="1" max="4" id="answerOrigin" th:field="*{answerOrigin}" required><br>
 
     <!-- Кнопки для отправки формы или отмены операции -->
     <button type="submit">Сохранить</button>
@@ -44,17 +47,17 @@
 </form>
 <form th:action="@{/ticket/view}" method="get">
     <label for="ticketId">ID билета:</label>
-    <input type="number" id="ticketId" th:name="id" required>
+    <input type="number" min="1" id="ticketId" th:name="id" required>
     <button type="submit">Просмотреть билет</button>
 </form>
 <form th:action="@{/ticket/del}" method="get">
     <label for="ticId">ID билета:</label>
-    <input type="number" id="ticId" th:name="id" required>
+    <input type="number" min="1" id="ticId" th:name="id" required>
     <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот билет?')">Удалить билет</button>
 </form>
 <h2>Список объектов</h2>
 <ul>
-    <li th:each="object : ${tickets}">
+    <li th:each="object : ${tic}">
         <span th:text="${object.id}">номер</span>
         <span th:text="${object.question}">вопрос</span>
     </li>

@@ -20,7 +20,7 @@
 <h1>Вход</h1>
 <form th:action="@{/user/login}" method="get">
     <label for="loginUsername">Имя пользователя:</label>
-    <input type="text" id="loginUsername" name="id" required><br>
+    <input type="number" min="1" id="loginUsername" name="id" required><br>
     <button type="submit">Войти</button>
 </form>
 </body>
