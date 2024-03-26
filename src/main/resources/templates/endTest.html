@@ -5,6 +5,14 @@
     <title>Результат теста</title>
 </head>
 <body>
-
+<h1>Результат теста</h1>
+<form th:action="@{/user/login}" method="get">
+    <p><input type="hidden" name="id" th:value="${id}"/></p>
+    <p><strong>Результат: </strong> <span th:text="${result}"></span></p>
+    <p><strong>Количество ошибок: </strong> <span th:text="${bad}"></span></p>
+    <button type="submit">Повторить</button>
+</form>
+<a th:href="@{'/user'}">
+    <button>выход</button></a>
 </body>
 </html>

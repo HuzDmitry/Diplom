@@ -1,4 +1,4 @@
-package by.TestFireAlarm.dao;
+package by.TestFireAlarm.model;
 
 public interface TicketIdQuestion {
     Integer getId();

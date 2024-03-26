@@ -1,9 +1,7 @@
 package by.TestFireAlarm.controller;
 
-import by.TestFireAlarm.dao.LogAndFirstName;
-import by.TestFireAlarm.dao.Status;
+import by.TestFireAlarm.model.LogAndFirstName;
 import by.TestFireAlarm.entity.LogsTest;
-import by.TestFireAlarm.entity.Users;
 import by.TestFireAlarm.service.LogsTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,22 +26,15 @@ public class LogsTestControllerImpl implements LogsTestController{
     }
 
     @Override
-    public String findById(Integer id, Model model) {
-        LogsTest l = logsTestService.fidById(id);
+    public String findByStatus(String status, Model model) {
+        List<LogAndFirstName> l = logsTestService.findByStatus(status);
         model.addAttribute("logs", l);
         return "event.html";
     }
 
     @Override
-    public String findByStatus(Status status, Model model) {
-        List<LogsTest> l = logsTestService.findByStatus(status);
-        model.addAttribute("logs", l);
-        return "event.html";
-    }
-
-    @Override
-    public String findByUser(Users users, Model model) {
-        List<LogsTest> l = logsTestService.findByUser(users);
+    public String findByUserId(Integer id, Model model) {
+        List<LogAndFirstName> l = logsTestService.findByUserId(id);
         model.addAttribute("logs", l);
         return "event.html";
     }

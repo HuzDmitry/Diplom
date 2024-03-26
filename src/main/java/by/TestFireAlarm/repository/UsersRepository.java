@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
-    Optional <Users> findByFirstNameAndLastNameAndPosition(String firstName, String lastName, String position);
 }

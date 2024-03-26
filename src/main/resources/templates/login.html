@@ -17,10 +17,11 @@
 </form>
 <h4>Тест состоит из 10 вопросов. результат теста узнаете после решения всех вопросов.</h4>
 
-<a th:href="@{'/ticket/test'}">
-    <button>Начать тест</button></a>
+<form th:action="@{/user/test}" method="get">
+    <input type="hidden"  name="id" th:value="${users.id}" required><br>
+    <button type="submit">Начать тест</button>
+</form>
 <a th:href="@{'/user'}">
     <button>выход</button></a>
-
 </body>
 </html>

@@ -1,29 +1,30 @@
 package by.TestFireAlarm.controller;
 
+import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.entity.Users;
-import by.TestFireAlarm.service.UsersServiceImpl;
+import by.TestFireAlarm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
+
 
 @Controller
 public class UsersControllerImpl implements UserController{
 
-    private final UsersServiceImpl usersService;
+    private final UserService usersService;
 
     @Autowired
-    public UsersControllerImpl(UsersServiceImpl usersService) {
+    public UsersControllerImpl(UserService usersService) {
         this.usersService = usersService;
     }
 
     public String saveUser(String firstName, String lastName, String position, Model model){
         Users users = new Users(firstName, lastName, position);
-        boolean res = usersService.save(users);
-        users = usersService.getUserByName(firstName, lastName, position);
+        users = usersService.save(users);
         model.addAttribute("users", users);
         return "login.html";
     }
@@ -33,15 +34,13 @@ public class UsersControllerImpl implements UserController{
     }
 
     public String login(Integer id, Model model){
-        Users l = usersService.getById(id);
-        model.addAttribute("users", l);
+        model.addAttribute("users", usersService.getById(id));
         return "login.html";
     }
 
     @Override
     public String findAll(Model model) {
-        List<Users> l = usersService.findAll();
-        model.addAttribute("users", l);
+        model.addAttribute("users", usersService.findAll());
         return "users.html";
     }
 
@@ -49,5 +48,29 @@ public class UsersControllerImpl implements UserController{
     public String deleteUserById(Integer id, Model model) {
         usersService.deleteById(id);
         return "redirect:/user/all";
+    }
+
+    @Override
+    public String getTicketByTest(Integer id, Model model) {
+        List<Ticket> ticketList = usersService.getTicketsByUsers();
+        Users users = usersService.getById(id);
+        Integer logId = usersService.setLogsByStartTest(ticketList, users);
+        model.addAttribute("list", ticketList);
+        model.addAttribute("users", users);
+        model.addAttribute("logId", logId);
+        model.addAttribute("id", id);
+        return "test.html";
+    }
+
+    @Override
+    public String endTest(String[] numbers, Integer id, Integer logId, Model model) {
+        Integer result = usersService.getResulToTest(numbers, logId);
+        if (result <= 1)
+            model.addAttribute("result","Вы прошли тест!");
+        else
+            model.addAttribute("result", "Тест не пройден.");
+        model.addAttribute("bad", result);
+        model.addAttribute("id", id);
+        return "endTest.html";
     }
 }

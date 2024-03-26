@@ -30,12 +30,6 @@ public class SecurityConfig {
         this.loginsService = loginsService;
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.debug(securityDebug)
-                .ignoring()
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
-    }
 
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -43,7 +37,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/ticket/**").hasRole("ADMIN")
-                                .requestMatchers("/user/**").authenticated()
+                                .requestMatchers("/user/**").hasRole("USER")
+                                .requestMatchers("/").authenticated()
+                                .requestMatchers("/event-log").hasRole("ADMIN")
                                 .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->

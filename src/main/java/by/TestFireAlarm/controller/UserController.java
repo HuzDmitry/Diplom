@@ -1,8 +1,12 @@
 package by.TestFireAlarm.controller;
 
+import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.entity.Users;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 @RequestMapping("/user")
 public interface UserController {
@@ -22,4 +26,10 @@ public interface UserController {
 
     @PostMapping("/delete")
     String deleteUserById(@RequestParam Integer id, Model model);
+
+    @GetMapping("/test")
+    String getTicketByTest(@RequestParam Integer id, Model model);
+
+    @PostMapping("/end")
+    String endTest(@RequestParam String[] numbers, @RequestParam Integer id, @RequestParam Integer logId, Model model);
 }

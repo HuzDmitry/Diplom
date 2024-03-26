@@ -1,16 +1,18 @@
 package by.TestFireAlarm.service;
 
-import by.TestFireAlarm.dao.TicketIdQuestion;
+import by.TestFireAlarm.model.TicketIdQuestion;
 import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
+import java.util.*;
 
 @Service
 public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
+
     @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
@@ -50,5 +52,16 @@ public class TicketServiceImpl implements TicketService{
         t.setAnswer4(ticket.getAnswer4());
         t.setAnswerOrigin(ticket.getAnswerOrigin());
         return "ok";
+    }
+
+    @Override
+    public List<Ticket> getTickets() {
+        int count = Math.toIntExact(ticketRepository.count());
+        Set<Integer> ticketId =new HashSet<>();
+        Random random = new Random();
+        while(ticketId.size() < 10){
+            ticketId.add(random.nextInt(count+1));
+        }
+        return ticketRepository.findByIdIn(ticketId);
     }
 }

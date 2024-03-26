@@ -7,6 +7,30 @@
 <body>
 <h1>Просмотр журнала событий</h1>
 <div th:insert="~{fragment::header}"></div>
+<form th:action="@{/event-log/delete}" method="post">
+    <label for="log">ID записи:</label>
+    <input type="number" min="1" id="log" th:name="id" required>
+    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить эту запись?')">Удалить запись</button>
+</form>
+<form th:action="@{/event-log/userid}" method="get">
+    <label for="log1">Просмотр пользователя:</label>
+    <input type="number" min="1" id="log1" th:name="id" required>
+    <button type="submit" >Id пользователя</button>
+</form>
+<form th:action="@{/event-log/status}" method="get">
+    <label for="log2">Кто сдал:</label>
+    <input type="hidden"  id="log2" th:name="status" th:value="OK" required>
+    <button type="submit">Просмотр</button>
+</form>
+<form th:action="@{/event-log/status}" method="get">
+    <label for="log3">Кто не сдал:</label>
+    <input type="hidden" id="log3" th:name="status" th:value="BAD" required>
+    <button type="submit">Просмотр</button>
+</form>
+<form th:action="@{/event-log}" method="get">
+    <label for="log3">Показать весь журнал:</label>
+    <button type="submit">Просмотр</button>
+</form>
 <table border="3">
     <thead>
     <tr>
@@ -15,7 +39,8 @@
         <th>имя</th>
         <th>статус</th>
         <th>№ билетов</th>
-        <th>ответы</th>
+        <th>ответы пользователя</th>
+        <th>правильные ответы</th>
         <th>время начала</th>
         <th>время окончание</th>
     </tr>
@@ -28,16 +53,12 @@
         <td th:text="${field.status}">Field Value</td>
         <td th:text="${field.tickets}">Field Value</td>
         <td th:text="${field.answers}">Field Value</td>
+        <td th:text="${field.answer_origin}">Field Value</td>
         <td th:text="${field.start}">Field Value</td>
         <td th:text="${field.end}">Field Value</td>
     </tr>
     </tbody>
 </table>
-<form th:action="@{/event-log/delete}" method="post">
-    <label for="log">ID записи:</label>
-    <input type="number" min="1" id="log" th:name="id" required>
-    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить эту запись?')">Удалить запись</button>
-</form>
 <form action="/admin" metod="get">
     <button type="submit">Выход в главное меню</button>
 </form>

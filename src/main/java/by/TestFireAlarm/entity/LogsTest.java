@@ -1,6 +1,5 @@
 package by.TestFireAlarm.entity;
 
-import by.TestFireAlarm.dao.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -26,14 +25,16 @@ public class LogsTest {
     private Timestamp testEnd;
 
     @Column(name="status")
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
 
     @Column(name = "tickets")
     private String tickets;
 
     @Column(name = "answers")
     private String answers;
+
+    @Column(name = "answer_origin")
+    private String answerOrigin;
 
     public Integer getId() {
         return id;
@@ -67,11 +68,11 @@ public class LogsTest {
         this.testEnd = testEnd;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -79,7 +80,16 @@ public class LogsTest {
         return tickets;
     }
 
-    public void setTickets(String tickets) { tickets = tickets;
+    public String getAnswerOrigin() {
+        return answerOrigin;
+    }
+
+    public void setAnswerOrigin(String answerOrigin) {
+        this.answerOrigin = answerOrigin;
+    }
+
+    public void setTickets(String tickets) {
+        this.tickets = tickets;
     }
 
     public String getAnswers() {
@@ -87,7 +97,6 @@ public class LogsTest {
     }
 
     public void setAnswers(String answers) {
-        answers = answers;
+        this.answers = answers;
     }
-
 }

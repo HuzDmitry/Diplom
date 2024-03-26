@@ -1,14 +1,12 @@
 package by.TestFireAlarm.service;
 
-import by.TestFireAlarm.dao.LogAndFirstName;
-import by.TestFireAlarm.dao.Status;
+import by.TestFireAlarm.model.LogAndFirstName;
 import by.TestFireAlarm.entity.LogsTest;
-import by.TestFireAlarm.entity.Users;
 import by.TestFireAlarm.repository.LogsTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LogsTestServiceImpl implements LogsTestService{
@@ -19,13 +17,6 @@ public class LogsTestServiceImpl implements LogsTestService{
         this.logsTestRepository = logsTestRepository;
     }
 
-    @Override
-    public LogsTest fidById(Integer id) {
-        Optional<LogsTest> l = logsTestRepository.findById(id);
-        if (!l.isEmpty())
-            return new LogsTest();
-        return l.get();
-    }
 
     @Override
     public List<LogAndFirstName> findAll() {
@@ -33,12 +24,12 @@ public class LogsTestServiceImpl implements LogsTestService{
     }
 
     @Override
-    public List<LogsTest> findByUser(Users users) {
-        return logsTestRepository.findByUsers(users);
+    public List<LogAndFirstName> findByUserId(Integer id) {
+        return logsTestRepository.findLogsByUsersId(id);
     }
 
     @Override
-    public List<LogsTest> findByStatus(Status status) {
+    public List<LogAndFirstName> findByStatus(String status) {
         return logsTestRepository.findByStatus(status);
     }
 
@@ -50,5 +41,10 @@ public class LogsTestServiceImpl implements LogsTestService{
     @Override
     public LogsTest save(LogsTest logsTest) {
         return logsTestRepository.save(logsTest);
+    }
+
+    @Override
+    public LogsTest findById(Integer id) {
+        return logsTestRepository.findById(id).orElseThrow();
     }
 }

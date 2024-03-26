@@ -36,6 +36,7 @@ public class LoginsService implements UserDetailsService {
     public Optional<Logins> findByName(String name){
         return loginRepository.findByName(name);
     }
+
     public void createNewUser(Logins logins, Integer id){
         logins.setRolesList(List.of(roleRepository.findById(id).get()));
         loginRepository.save(logins);
