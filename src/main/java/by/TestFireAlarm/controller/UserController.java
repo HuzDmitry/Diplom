@@ -2,6 +2,7 @@ package by.TestFireAlarm.controller;
 
 import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.entity.Users;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +22,11 @@ public interface UserController {
     @GetMapping("/login")
     String login(@RequestParam Integer id, Model model);
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     String findAll(Model model);
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
     String deleteUserById(@RequestParam Integer id, Model model);
 

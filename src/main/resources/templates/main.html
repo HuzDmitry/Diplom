@@ -8,10 +8,10 @@
 <div th:insert="~{fragment::header}"></div>
  <h1>Меню Администратора.</h1>
   <ul>
-    <li><a href="/ticket">Работа с билетами</a></li>
-    <li><a href="/user/all">Работа с пользователями</a></li>
-    <li><a href="/event-log">Работа с журналом событий</a></li>
-    <li><a href="/">Выход</a></li>
+    <li><a th:href="@{/ticket}">Работа с билетами</a></li>
+    <li><a th:href="@{/user/all}">Работа с пользователями</a></li>
+    <li><a th:href="@{/event-log}">Работа с журналом событий</a></li>
+    <li><a th:href="@{/}">Выход</a></li>
   </ul>
 </body>
 </html>

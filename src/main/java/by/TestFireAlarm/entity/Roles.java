@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 public class Roles {
@@ -28,4 +29,5 @@ public class Roles {
     public void setName(String name) {
         this.name = name;
     }
+
 }
