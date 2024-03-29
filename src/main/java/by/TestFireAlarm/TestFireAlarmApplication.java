@@ -12,9 +12,9 @@ public class TestFireAlarmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TestFireAlarmApplication.class, args);
-		//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//String result = encoder.encode("300");
-		//System.out.println(result);
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		String result = encoder.encode("300");
+//		System.out.println(result);
 	}
 
 }

@@ -42,7 +42,7 @@ public class UsersServiceImpl implements UserService{
     }
 
     @Override
-    public Users getById(Integer id) {
+    public Users getById(Integer id) throws UsernameNotFoundException{
         return usersRepository.findById(id).orElseThrow(()->new UsernameNotFoundException("No users"));
     }
 

@@ -4,6 +4,7 @@ import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.entity.Users;
 import by.TestFireAlarm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -34,8 +35,13 @@ public class UsersControllerImpl implements UserController{
     }
 
     public String login(Integer id, Model model){
-        model.addAttribute("users", usersService.getById(id));
-        return "login.html";
+        try {
+            Users user = usersService.getById(id);
+            model.addAttribute("users", usersService.getById(id));
+            return "login.html";
+        }catch (UsernameNotFoundException e){
+            return "redirect:/user";
+        }
     }
 
     @Override

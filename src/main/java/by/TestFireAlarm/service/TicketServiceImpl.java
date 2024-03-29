@@ -19,7 +19,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public Ticket findById(Integer id){
+    public Ticket findById(Integer id)throws UsernameNotFoundException{
         return ticketRepository.findById(id).orElseThrow(()->new UsernameNotFoundException("No ticket an id"));
     }
 
