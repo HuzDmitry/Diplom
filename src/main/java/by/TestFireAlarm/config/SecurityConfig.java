@@ -10,7 +10,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,20 +28,19 @@ public class SecurityConfig  {
         this.loginsService = loginsService;
     }
 
-
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/").permitAll()
                                .requestMatchers("/admin/**", "/event-log/**", "/ticket/**").hasRole("ADMIN")
-                               .requestMatchers("/user/**").hasRole("USER")
-                                .anyRequest().authenticated()
+                               .requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                                .anyRequest().denyAll()
                                 )
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(httpSecuritySessionManagementConfigurer ->
-                      httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
+                .formLogin(Customizer.withDefaults())
+                .logout(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
     @Bean

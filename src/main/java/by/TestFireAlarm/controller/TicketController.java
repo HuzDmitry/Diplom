@@ -4,7 +4,7 @@ import by.TestFireAlarm.entity.Ticket;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/ticket")
 public interface TicketController {
     @GetMapping

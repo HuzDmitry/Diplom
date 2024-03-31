@@ -2,8 +2,6 @@ package by.TestFireAlarm.service;
 
 import by.TestFireAlarm.entity.Ticket;
 import by.TestFireAlarm.entity.Users;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserService {
