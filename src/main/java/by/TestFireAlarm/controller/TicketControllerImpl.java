@@ -2,7 +2,7 @@ package by.TestFireAlarm.controller;
 
 import by.TestFireAlarm.model.TicketIdQuestion;
 import by.TestFireAlarm.entity.Ticket;
-import by.TestFireAlarm.service.TicketServiceImpl;
+import by.TestFireAlarm.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,9 @@ import java.util.List;
 @Controller
 public class TicketControllerImpl implements TicketController{
 
-    private final TicketServiceImpl ticketService;
+    private final TicketService ticketService;
     @Autowired
-    public TicketControllerImpl(TicketServiceImpl ticketService) {
+    public TicketControllerImpl(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 
