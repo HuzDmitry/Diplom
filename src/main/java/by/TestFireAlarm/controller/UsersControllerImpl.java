@@ -49,8 +49,12 @@ public class UsersControllerImpl implements UserController{
 
     @Override
     public String deleteUserById(Integer id, Model model) {
-        usersService.deleteById(id);
-        return "redirect:/user/all";
+        try {
+            usersService.deleteById(id);
+            return "redirect:/user/all";
+        }catch (UsernameNotFoundException e){
+            return "redirect:/user/all";
+        }
     }
 
     @Override

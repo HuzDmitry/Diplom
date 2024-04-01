@@ -6,6 +6,8 @@
 </head>
 <body>
 <div th:insert="~{fragment::header}"></div>
+<a th:href="@{'/'}">
+    <button>выход</button></a>
 <h1>Регистрация</h1>
 <form th:action="@{/user/register}"  method="post">
     <label>Фамилия пользователя:</label>
